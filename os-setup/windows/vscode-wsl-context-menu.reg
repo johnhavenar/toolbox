@@ -1,0 +1,38 @@
+Windows Registry Editor Version 5.00
+
+; Delete old entries
+[-HKEY_CLASSES_ROOT\Directory\shell\VSCode]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode]
+
+; Add a sub-menu for right click on a folder
+[HKEY_CLASSES_ROOT\Directory\shell\VSCode]
+"MUIVerb"="Visual Studio Code"
+"ExtendedSubCommandsKey"="Directory\\ContextMenus\\VSCode"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+; Add a sub-menu for right click on the background
+[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode]
+"MUIVerb"="Visual Studio Code"
+"ExtendedSubCommandsKey"="Directory\\ContextMenus\\VSCode"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\VSCode]
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\VSCode\shell]
+
+; Set up text and icons
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\VSCode\shell\open]
+"MUIVerb"="Open folder"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\VSCode\shell\openwsl]
+"MUIVerb"="Open folder in WSL"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+; Set up commands
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\VSCode\shell\open\command]
+@="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%V\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\VSCode\shell\openwsl\command]
+@="wsl.exe --cd \"%V\" code ."
+; This will open the current folder WSL-side, and then run code from there
